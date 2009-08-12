@@ -1,0 +1,96 @@
+FeedToJoomla
+-------------
+
+This project posts subscribed author's blog entries as Joomla articles
+to create a blog-planet-like section on your site which you can then
+present as a regular Joomla Category and link to site contents using
+mod_related or any other module.
+
+I. Introduction
+II. Dependencies
+	2.1 Universal Feed Parser
+	2.2 MySQL Python Module
+III. Installation
+IV. License
+V. Author
+
+----------------------------------------------------------------------
+
+I. Introduction
+
+This script is meant to be set up as a cron job to do the following
+tasks:
+
+	- Read all subscribed feeds to see what new posts were added
+	  since last time it ran.
+	- Insert new unpublished articles for each new post into a Joomla
+	  database using the post title and the content.
+	- Collect all post titles and descriptions (in case there's no
+	  description, the first paragraph is used) and send an e-mail to
+	  all subscribed administrators to notify the new articles.
+	  
+----------------------------------------------------------------------
+
+II. Dependencies
+
+2.1 Universal Feed Parser
+
+This script depends on Mark Pilgrim's Universal Feed Parser, which you
+can get from your package manager (feedparser Python module) or from
+
+http://www.feedparser.org 
+
+***IMPORTANT NOTICE***
+
+Current stable version of Universal Feed Parser (4.1) has a bug at
+processing Wordpress feeds, see
+
+http://code.google.com/p/feedparser/issues/detail?id=112
+
+2.2 MySQL Python Module
+
+Currently the script is only able to connect to MySQL Joomla databases
+and uses the MySQL Python module which you can get from your package
+manager.
+
+----------------------------------------------------------------------
+
+III. Installation
+
+Select an existing category or create a new one where to put all
+articles from post and annotate the category id and the section id
+for that category. You must also select or create a user which
+will appear as the creator of the article and annotate its id.
+
+Update config.py with your information and add all ids annotated
+from the previous paragraph under the Various ids section. Note
+that the script doesn't need to run on the same server as the
+Joomla installation and you should update the smtpServer variable
+to your preferred e-mail server which may be your localhost or a
+relay server.
+
+You can then setup a cron job to run the script automatically.
+
+----------------------------------------------------------------------
+
+IV. License
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+----------------------------------------------------------------------
+
+V. Author
+
+David E. Narváez (a.k.a. dMaggot)
+david.narvaez [at] computer.org
